@@ -30,7 +30,14 @@ const reducer = combineReducers({
   userName: userSlice,
 });
 
-const rootReducer = (state, action) => reducer(state, action);
+const rootReducer = (state, action) => {
+  if (action.type === 'LOG_OUT') {
+    state = initialState;
+  }
+
+  return reducer(state, action);
+};
+
 
 const persistData = persistReducer(rootPersistConfig, rootReducer);
 
